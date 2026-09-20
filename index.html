@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>IDECO • Tạo link ảnh gửi Zalo V31</title><meta name="referrer" content="no-referrer">
+<title>IDECO • Tạo link ảnh gửi Zalo V32</title><meta name="referrer" content="no-referrer">
 <style>
 :root{--ink:#3c211f;--muted:#7f6b69;--accent:#f53220;--accentDark:#a91d14;--line:#ead9d6;--bg:#fff7f5;--ok:#eef9f3;--ok2:#12624f;--err:#fff0ed;--err2:#a43a2d;--wait:#fff8e8;--wait2:#805b14}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}header{background:linear-gradient(135deg,#9f1d13,#f53220);color:#fff;padding:22px 18px}header .wrap,main{max-width:1100px;margin:auto}h1{font-size:32px;line-height:1.15;margin:4px 0 8px}small{letter-spacing:3px;color:#ffe0db}p{margin:8px 0}.toprow{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:14px}.badge{padding:7px 11px;border-radius:999px;background:#ffffff20;font-weight:800;font-size:13px}.ghostTop{border:1px solid #ffffff45;background:#ffffff18;color:#fff;border-radius:999px;padding:8px 12px;font-weight:800;cursor:pointer}
@@ -48,9 +48,9 @@ footer{text-align:center;color:var(--muted);padding:16px}
 
 <div id="setupModal" class="modalWrap"><div class="modal"><div class="titleRow"><h2 style="margin:0">🔒 Token GitHub — khu vực bảo vệ</h2><button id="closeSetup" class="secondary" style="padding:8px 12px">✕</button></div>
 <p>Repository, nhánh và GitHub Pages đã được cố định sẵn. Khu vực này chỉ mở sau khi nhập đúng mật khẩu cài đặt.</p><div class="note"><b>Đã cố định:</b><br>Repository: <b>duocphamideco/ideco</b><br>Branch: <b>main</b><br>Pages: <b>https://duocphamideco.github.io/ideco/</b></div><div class="warn" style="margin-top:12px"><b>Đơn giản hóa:</b> V24 chỉ dùng Personal Access Token <b>Classic</b> dạng <code>ghp_...</code>. Nút tạo token bên dưới mở GitHub với scope <b>repo</b> được chọn sẵn. Scope này rộng hơn Fine-grained nhưng tránh lỗi phân quyền lặp lại.</div>
-<div class="warn"><b>An toàn:</b> Ứng dụng để hỗ trợ công tác chia sẻ báo giá- thông tin sản phẩm thông qua ảnh gởi trên Zalo- Mạng xã hộ.</div><div class="note" style="margin-top:12px"><b>☁ Firebase Realtime:</b> đã gắn sẵn dự án <b>thunghiem-cc386</b>. Token hợp lệ sẽ được <b>mã hóa</b> trước khi sao lưu lên Firebase. Không cần đăng nhập Firebase.</div><label>GitHub token</label><input id="token" type="password" autocomplete="off" placeholder="Chỉ dán Personal Access Token (classic) bắt đầu bằng ghp_">
+<div class="warn"><b>An toàn:</b> Ừng dụng để chia sẻ báo giá- thông tin sản phẩm từ website qua nền tảng gởi ẢNH  zalo-facebook- mạng xã hội </div><div class="note" style="margin-top:12px"><b>☁ Firebase Realtime:</b> đã gắn sẵn dự án <b>thunghiem-cc386</b>. Token hợp lệ sẽ được <b>mã hóa</b> trước khi sao lưu lên Firebase. Không cần đăng nhập Firebase.</div><label>GitHub token</label><input id="token" type="password" autocomplete="off" placeholder="Chỉ dán Personal Access Token (classic) bắt đầu bằng ghp_">
 <div class="actions"><button id="saveAndTest">💾 Kiểm tra & lưu token mới</button><button id="testToken" class="secondary">🔎 Kiểm tra quyền GitHub</button></div>
-<div id="setupMsg" class="inlineStatus" style="margin-top:12px">Token được lưu trên máy và sẽ đồng bộ bản mã hóa lên Firebase để dùng ở máy khác.</div>
+<div id="setupMsg" class="inlineStatus" style="margin-top:12px">Token nhập một lần. Ứng dụng tự đồng bộ Firebase và tự khôi phục trên máy khác. Mật khẩu chỉ dùng để mở Cài đặt.</div>
 <div class="actions"><button id="syncCloudToken" class="secondary">☁ Đồng bộ token hiện có lên Firebase</button><button id="restoreCloudToken" class="secondary">⬇ Khôi phục token từ Firebase</button><button id="clearToken" class="secondary">🗑 Xóa token đã lưu</button><a class="btn secondary" target="_blank" rel="noopener noreferrer" href="https://github.com/settings/tokens/new?description=IDECO-ZALO&scopes=repo">Tạo token Classic đúng quyền</a></div>
 </div></div>
 <div id="cloudUnlockModal" class="modalWrap"><div class="modal" style="max-width:520px"><div class="titleRow"><h2 style="margin:0">☁ Khôi phục token từ Firebase</h2><button id="cancelCloudUnlock" class="secondary" style="padding:8px 12px">✕</button></div><p>Máy này chưa có token cục bộ nhưng Firebase đã có bản sao mã hóa. Anh chỉ cần nhập <b>mật khẩu cài đặt</b>, không cần dán lại GitHub token.</p><label>Mật khẩu cài đặt</label><input id="cloudPass" type="password" autocomplete="current-password" placeholder="Nhập mật khẩu cài đặt"><div class="actions"><button id="unlockCloudToken">🔓 Mở khóa & dùng token</button><button id="cancelCloudUnlock2" class="secondary">Để sau</button></div><div id="cloudUnlockMsg" class="inlineStatus" style="margin-top:12px">Đang chờ mở khóa.</div></div></div>
@@ -61,13 +61,14 @@ footer{text-align:center;color:var(--muted);padding:16px}
 <div class="actions"><button id="saveEditedTarget">💾 Lưu website mới</button><button id="cancelEditedTarget" class="secondary">Hủy</button></div>
 <div id="editTargetMsg" class="inlineStatus" style="margin-top:12px">Chưa có thay đổi.</div>
 </div></div>
-<footer>IDECO · GitHub Pages · V31 · Firebase Cloud Token đồng bộ đa thiết bị<br><span class="devMark">Phát triển bởi MTRIET</span></footer>
+<footer>IDECO · GitHub Pages · V32 · Firebase Cloud Token đồng bộ đa thiết bị<br><span class="devMark">Phát triển bởi MTRIET</span></footer>
 <script>
 'use strict';
 const $=id=>document.getElementById(id),enc=new TextEncoder();
 const CFG={owner:'duocphamideco',repo:'ideco',branch:'main',base:'https://duocphamideco.github.io/ideco/'};
-const FIREBASE={databaseURL:'https://thunghiem-cc386-default-rtdb.firebaseio.com',path:'idecoSecure/zaloShare/githubToken'};
+const FIREBASE={databaseURL:'https://thunghiem-cc386-default-rtdb.firebaseio.com',path:'idecoSecure/zaloShare/githubTokenAutoV32'};
 const SETTINGS_PASSWORD_HASH='b8a57977041c2b2ba8baab472c1f0240a30b671a9fb027f9e4d73b52818b0b29';
+const CLOUD_KEY_MATERIAL='IDECO::picture-weblink::auto-cloud-token::v32::2026';
 const STORE='idecoZaloV11Token', ITEMS='idecoZaloV16Items', DEFAULT_TARGET='idecoZaloDefaultTargetV17', TEXT_STYLE='idecoZaloTextStyleV27';
 let token='',items={},imageData=null,previewData=null,baseCanvas=null,busy=false,editingTargetCode='',tokenVerified=false,settingsPassSession='',firebaseState='checking',lastFirebaseError='';
 function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot',"'":'&#39;'}[c]))}
@@ -150,45 +151,17 @@ function rebuildPreviewImage(){
 }
 function getDefaultTarget(){try{return safeUrl(localStorage.getItem(DEFAULT_TARGET)||'https://duocphamideco.github.io/bangbaogia/')}catch{return 'https://duocphamideco.github.io/bangbaogia/'}}function saveDefaultTarget(){const u=safeUrl($('target').value.trim());localStorage.setItem(DEFAULT_TARGET,u);$('target').value=u;$('defaultTargetHint').textContent='✅ Đã lưu website mặc định: '+u;status('✅ Đã lưu website mặc định. Những lần sau ứng dụng sẽ tự điền website này.',false,true)}function loadStored(){let oldType='';try{const d=JSON.parse(localStorage.getItem(STORE)||'{}');if(typeof d.token==='string'&&d.token.startsWith('ghp_'))token=d.token;else if(typeof d.token==='string'&&d.token.length>20)oldType=d.token.startsWith('github_pat_')?'Fine-grained':'khác'}catch{}try{items=JSON.parse(localStorage.getItem(ITEMS)||'{}')||{}}catch{items={}}$('target').value=getDefaultTarget();$('defaultTargetHint').textContent='Website mặc định hiện tại: '+getDefaultTarget();loadTextStyle();updateReady();render();setFirebaseBadge('checking');if(!token){if(oldType){status('Token cũ là '+oldType+' nên V27 không dùng để tránh lỗi 403. Ứng dụng sẽ thử khôi phục token Classic từ Firebase.',false,false,true)}else status('Đang tìm token đã mã hóa trên Firebase…',false,false,true)}else{status('✅ Đã có token trên máy. Ứng dụng sẽ đồng bộ Firebase ở nền.',false,true)}}
 function saveTokenLocal(){localStorage.setItem(STORE,JSON.stringify({token,updatedAt:Date.now()}))}function normalizeToken(raw){const s=String(raw||'').trim();const m=s.match(/(ghp_[A-Za-z0-9_]+)/);return m?m[1]:''}
-async function ensureCloudPass(){if(settingsPassSession)return settingsPassSession;const pass=window.prompt('Nhập mật khẩu cài đặt để mở khóa token trên Firebase:');if(pass===null)throw Error('Đã hủy mở khóa token Firebase.');if(!(await verifySettingsPassword(pass)))throw Error('Mật khẩu cài đặt không đúng.');settingsPassSession=pass;return pass}
-async function backupCurrentTokenToFirebase(silent=false){
-  if(!token){lastFirebaseError='Chưa có token GitHub trên máy.';return false}
-  let pass;
-  try{pass=await ensureCloudPass()}catch(e){lastFirebaseError=e.message||String(e);if(!silent)setupMsg('⚠ '+lastFirebaseError,true);return false}
-  try{
-    await firebaseSaveToken(token,pass);
-    const check=await firebaseGetTokenBlob();
-    const roundTrip=normalizeToken(await decryptCloudToken(check,pass));
-    if(!roundTrip||roundTrip!==token)throw Error('Firebase đã ghi nhưng kiểm tra đọc lại không khớp token.');
-    setFirebaseBadge('ok','Đã ghi + đọc kiểm tra thành công');
-    lastFirebaseError='';
-    if(!silent){setupMsg('✅ Đã đồng bộ token mã hóa lên Firebase và kiểm tra đọc lại thành công.',false,true);status('✅ Firebase đã giữ token mã hóa. Máy khác chỉ cần mở khóa bằng mật khẩu cài đặt.',false,true)}
-    return true
-  }catch(e){lastFirebaseError=e.message||String(e);setFirebaseBadge('error',lastFirebaseError);if(!silent){setupMsg('⚠ Chưa đồng bộ Firebase: '+lastFirebaseError,true);status('⚠ Token vẫn dùng được trên máy này, nhưng chưa dùng được ở máy khác.',false,false,true)}return false}
-}
+async function ensureCloudPass(){return CLOUD_KEY_MATERIAL}
 async function syncExistingTokenIfNeeded(force=false){
   if(!token)return false;
   try{
     const blob=await firebaseGetTokenBlob();
-    if(blob&&blob.data&&!force){setFirebaseBadge('ok','Firebase đã có bản sao token');setupMsg('✅ Token trên máy đã có bản sao mã hóa trên Firebase.',false,true);return true}
+    if(blob&&blob.data&&!force){setFirebaseBadge('ok','Firebase đã có bản sao token tự động');setupMsg('✅ Token trên máy đã có bản sao mã hóa trên Firebase.',false,true);return true}
   }catch(e){lastFirebaseError=e.message||String(e);if(!force)throw e}
   setupMsg('Đang đồng bộ token hiện có lên Firebase…');
   return await backupCurrentTokenToFirebase(false)
 }
-function showCloudUnlock(){if(!$('cloudUnlockModal'))return;$('cloudPass').value='';$('cloudUnlockMsg').textContent='Firebase đã có token mã hóa. Nhập mật khẩu cài đặt để mở khóa.';$('cloudUnlockMsg').className='inlineStatus';$('cloudUnlockModal').classList.add('show');setTimeout(()=>$('cloudPass').focus(),80)}
-function hideCloudUnlock(){$('cloudUnlockModal')?.classList.remove('show')}
-async function restoreCloudToken(interactive=true){
-  setFirebaseBadge('checking');let blob;
-  try{blob=await firebaseGetTokenBlob()}catch(e){if(interactive)status('⚠ '+(e.message||e),false,false,true);return false}
-  if(!blob||!blob.data){setFirebaseBadge('error','Firebase chưa có token');if(interactive)status('Firebase chưa có token đã lưu. Trên máy đang có token, mở Cài đặt để đồng bộ lên Firebase.',false,false,true);return false}
-  let pass;
-  try{pass=await ensureCloudPass()}catch(e){if(interactive)status(e.message||e,false,false,true);return false}
-  try{
-    const restored=normalizeToken(await decryptCloudToken(blob,pass));if(!restored)throw Error('Token trên Firebase không phải token Classic ghp_.');
-    const old=token;token=restored;
-    try{await gh('');tokenVerified=true;saveTokenLocal();updateReady();setFirebaseBadge('ok');setupMsg('✅ Đã khôi phục token GitHub từ Firebase.',false,true);status('✅ Đã khôi phục token từ Firebase. Máy này không cần dán token GitHub.',false,true);return true}catch(e){token=old;throw e}
-  }catch(e){setFirebaseBadge('error','Không giải mã/khôi phục được');if(interactive)status('❌ Không khôi phục được token Firebase: '+(e.message||e),true);return false}
-}
+function showCloudUnlock(){restoreCloudToken(true).catch(()=>{})}
 async function unlockCloudFromModal(){
   const pass=$('cloudPass').value;
   if(!(await verifySettingsPassword(pass))){$('cloudUnlockMsg').textContent='❌ Mật khẩu cài đặt không đúng.';$('cloudUnlockMsg').className='inlineStatus error';return}
@@ -197,18 +170,24 @@ async function unlockCloudFromModal(){
   if(ok){$('cloudUnlockMsg').textContent='✅ Đã khôi phục token. Máy này sẵn sàng sử dụng.';$('cloudUnlockMsg').className='inlineStatus ok';setTimeout(hideCloudUnlock,650)}else{$('cloudUnlockMsg').textContent='❌ Không khôi phục được token. Kiểm tra trạng thái Firebase.';$('cloudUnlockMsg').className='inlineStatus error'}
 }
 async function autoCloudSync(){
-  let blob;
+  let blob=null;
   try{blob=await firebaseGetTokenBlob()}catch(e){setFirebaseBadge('error',e.message||String(e));return false}
   if(token){
     if(blob&&blob.data){setFirebaseBadge('ok','Firebase đã có token mã hóa');return true}
-    setFirebaseBadge('error','Có token trên máy nhưng Firebase chưa có bản sao');status('⚠ Token hiện chỉ có trên máy này. Mở Cài đặt một lần để V31 tự đồng bộ token lên Firebase.',false,false,true);return false
+    status('☁ Đang tự đồng bộ token hiện có lên Firebase…',false,false,true);
+    const ok=await backupCurrentTokenToFirebase(true);
+    if(ok){setFirebaseBadge('ok','Đã tự đồng bộ token');status('✅ Token đã tự đồng bộ Firebase. Từ máy khác ứng dụng sẽ tự lấy token.',false,true);return true}
+    status('⚠ Token vẫn dùng được trên máy này nhưng Firebase chưa đồng bộ: '+(lastFirebaseError||'không rõ lỗi'),false,false,true);return false
   }
-  if(blob&&blob.data){setFirebaseBadge('found','Firebase có token mã hóa');status('☁ Đã tìm thấy token trên Firebase. Nhập mật khẩu cài đặt để dùng trên máy này.',false,false,true);showCloudUnlock();return true}
-  setFirebaseBadge('error','Firebase chưa có token');status('Chưa có token trên máy và Firebase cũng chưa có bản sao. Hãy lưu token trên một máy rồi đồng bộ Firebase.',false,false,true);return false
+  if(blob&&blob.data){
+    status('☁ Đang tự lấy token từ Firebase…',false,false,true);
+    return await restoreCloudToken(true)
+  }
+  setFirebaseBadge('error','Firebase chưa có token');status('Chưa có token. Chỉ cần vào Cài đặt và nhập token một lần; sau đó Firebase sẽ tự nhớ cho các máy khác.',false,false,true);return false
 }
 function ghUrl(path){return 'https://api.github.com/repos/'+encodeURIComponent(CFG.owner)+'/'+encodeURIComponent(CFG.repo)+path}
 async function gh(path,opt={},allow404=false,timeout=30000){if(!token)throw Error('Chưa có token GitHub.');const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),timeout);let r;try{r=await fetch(ghUrl(path),{...opt,headers:{Accept:'application/vnd.github+json',Authorization:'Bearer '+token,'X-GitHub-Api-Version':'2022-11-28',...(opt.body?{'Content-Type':'application/json'}:{})},signal:controller.signal})}catch(e){if(e?.name==='AbortError')throw Error('GitHub phản hồi quá lâu. Anh thử lại sau.');throw Error('Không kết nối được GitHub: '+(e?.message||e))}finally{clearTimeout(timer)}if(r.status===404&&allow404)return null;const d=await r.json().catch(()=>({}));if(!r.ok){const accepted=r.headers.get('x-accepted-github-permissions')||'';const hint={401:'Token sai hoặc hết hạn.',403:'Token hiện không có quyền ghi Contents vào repository ideco.',404:'Không tìm thấy repository/nhánh.',409:'Có thay đổi đồng thời trên repository.',422:'GitHub từ chối cập nhật nhánh.'}[r.status]||'';const perm=accepted?(' Quyền endpoint yêu cầu: '+accepted+'.'):'';throw Error('GitHub '+r.status+': '+(d.message||hint||'Không thể thao tác repository.')+perm)}return d}function contentsPath(path){return '/contents/'+String(path).split('/').map(encodeURIComponent).join('/')}async function deleteFileOnGitHub(path,message){const ref='?ref='+encodeURIComponent(CFG.branch);const info=await gh(contentsPath(path)+ref,{},true,20000);if(!info||!info.sha)return false;await gh(contentsPath(path),{method:'DELETE',body:JSON.stringify({message,sha:info.sha,branch:CFG.branch})},false,30000);return true}
-async function validateAndSave(){const raw=$('token').value;const candidate=normalizeToken(raw);if(candidate.length<20)throw Error('V31 chỉ nhận token Classic bắt đầu bằng ghp_. Anh bấm “Tạo token Classic đúng quyền”, Generate token rồi dán ghp_... vào đây.');const oldToken=token,oldVerified=tokenVerified;setupMsg('Đang kiểm tra token mới trước khi lưu…');token=candidate;tokenVerified=false;try{await gh('');await writeProbe();saveTokenLocal();$('token').value='';updateReady();setupMsg('✅ GitHub hợp lệ. Đang đồng bộ Firebase…',false,true);const cloudOK=await backupCurrentTokenToFirebase(true);if(cloudOK){setupMsg('✅ Đã lưu token trên máy + Firebase (mã hóa) và kiểm tra đọc lại thành công.',false,true);status('✅ Hoàn tất. Máy khác sẽ lấy token từ Firebase sau khi nhập mật khẩu cài đặt.',false,true);setTimeout(closeSetup,850)}else{setupMsg('⚠ Token đã lưu trên máy nhưng CHƯA lên Firebase: '+(lastFirebaseError||'không rõ lỗi')+'. Hãy bấm “Đồng bộ token hiện có lên Firebase”.',true);status('⚠ GitHub dùng được trên máy này, nhưng Firebase chưa đồng bộ nên máy khác chưa dùng được.',false,false,true)}}catch(e){token=oldToken;tokenVerified=oldVerified;updateReady();setupMsg('❌ Không lưu token mới vì GitHub từ chối: '+(e.message||e),true);status('❌ Token mới không hợp lệ hoặc không có quyền ghi GitHub.',true);throw e}}
+async function validateAndSave(){const raw=$('token').value;const candidate=normalizeToken(raw);if(candidate.length<20)throw Error('V32 chỉ nhận token Classic bắt đầu bằng ghp_. Anh bấm “Tạo token Classic đúng quyền”, Generate token rồi dán ghp_... vào đây.');const oldToken=token,oldVerified=tokenVerified;setupMsg('Đang kiểm tra token mới trước khi lưu…');token=candidate;tokenVerified=false;try{await gh('');await writeProbe();saveTokenLocal();$('token').value='';updateReady();setupMsg('✅ GitHub hợp lệ. Đang đồng bộ Firebase…',false,true);const cloudOK=await backupCurrentTokenToFirebase(true);if(cloudOK){setupMsg('✅ Đã lưu token trên máy + Firebase (mã hóa) và kiểm tra đọc lại thành công.',false,true);status('✅ Hoàn tất. Máy khác sẽ tự lấy token từ Firebase, không cần nhập mật khẩu.',false,true);setTimeout(closeSetup,850)}else{setupMsg('⚠ Token đã lưu trên máy nhưng CHƯA lên Firebase: '+(lastFirebaseError||'không rõ lỗi')+'. Hãy bấm “Đồng bộ token hiện có lên Firebase”.',true);status('⚠ GitHub dùng được trên máy này, nhưng Firebase chưa đồng bộ nên máy khác chưa dùng được.',false,false,true)}}catch(e){token=oldToken;tokenVerified=oldVerified;updateReady();setupMsg('❌ Không lưu token mới vì GitHub từ chối: '+(e.message||e),true);status('❌ Token mới không hợp lệ hoặc không có quyền ghi GitHub.',true);throw e}}
 async function testTokenPermission(){const candidate=normalizeToken($('token').value);const oldToken=token,oldVerified=tokenVerified;if(candidate)token=candidate;if(!token){openSetup();throw Error('Chưa có token để kiểm tra.')}setupMsg('Đang kiểm tra quyền GHI thật sự…');try{await gh('');await writeProbe();setupMsg(candidate?'✅ Token đang dán hợp lệ và có quyền ghi. Bấm “Lưu token ngay” để lưu.':'✅ Token đã lưu có quyền GHI Contents vào repo ideco.',false,true);status('✅ GitHub token đã kiểm tra GHI thành công.',false,true)}catch(e){tokenVerified=false;setupMsg('❌ Token chưa ghi được GitHub: '+(e.message||e),true);status('❌ Token không hợp lệ hoặc không có quyền ghi GitHub.',true);throw e}finally{if(candidate){token=oldToken;tokenVerified=oldVerified;updateReady()}}}
 function preview(){$('previewTitle').textContent=$('title').value.trim()||'Tiêu đề sẽ hiện ở đây';$('previewDescription').textContent=$('description').value.trim()||'Chọn ảnh và nhập nội dung.';try{$('previewHost').textContent=new URL(safeUrl($('target').value.trim())).hostname}catch{$('previewHost').textContent='WEBSITE ĐÍCH'}updateTextStyleUI(false);if(baseCanvas)rebuildPreviewImage()}
 async function loadImage(){const f=$('file').files[0];if(!f)return;if(!['image/jpeg','image/png','image/webp'].includes(f.type)||f.size>15*1024*1024)throw Error('Chọn JPG/PNG/WebP, tối đa 15 MB.');const u=URL.createObjectURL(f);try{const im=new Image();im.src=u;await im.decode();const s=Math.min(1,1600/Math.max(im.width,im.height));const c=document.createElement('canvas');c.width=Math.round(im.width*s);c.height=Math.round(im.height*s);const x=c.getContext('2d');x.fillStyle='#fff';x.fillRect(0,0,c.width,c.height);x.drawImage(im,0,0,c.width,c.height);baseCanvas=c;imageData={data:c.toDataURL('image/jpeg',.88),width:c.width,height:c.height};rebuildPreviewImage();pub('✅ Đã xử lý ảnh '+c.width+' × '+c.height+' px. Anh có thể chỉnh cỡ chữ/màu. Nếu không muốn chữ đè lên ảnh thì bỏ chọn mục chèn chữ lên ảnh.',false,true);status('✅ Ảnh đã nạp. Anh chỉnh kiểu chữ nếu cần rồi bấm Xuất bản & tạo link.',false,true)}finally{URL.revokeObjectURL(u)}}
